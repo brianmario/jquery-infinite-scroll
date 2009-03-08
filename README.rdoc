@@ -1,0 +1,3 @@
+== jQuery Infinite Scroll
+
+More documentation to come soon...
