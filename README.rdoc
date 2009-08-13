@@ -1,3 +1,64 @@
-== jQuery Infinite Scroll
+= jQuery Infinite Scroll
 
-More documentation to come soon...
+A basic infinite scrolling pattern for jQuery.
+
+== Getting Started
+
+=== Usage
+
+==== Basic
+
+ $(window).infinitescroll({url: window.location.href});
+
+==== A little more customized
+
+ $(window).infinitescroll({
+    url: window.location.href,
+    triggerAt: 150,
+    page: 4,
+    appendTo: 'table.userlist tbody'
+ });
+
+
+
+=== Patterns
+
+==== How can I specify which page of data to load?
+
+The "page" query parameter is appended to the URL specified
+
+==== How to tell this plugin there's no more data/pages to load?
+
+This is determined by handing back an empty response from the server. Once this happens, this plugin stops attempting to load data.
+
+=== Options
+
+ url:
+    default: null
+    The URL to fetch more data to append
+ triggerAt:
+    default: 300
+    This is the number of pixels from the bottom of the container (defaults to "document") to trigger the fetch for data
+ page:
+    default: 2
+    The page number to fetch (sets the page=# query parameter in the URL)
+ appendTo:
+    default: ".list tbody"
+    The selector that .append() gets called on
+ container:
+    default: document
+    This is the container used to measure scrolling, and then trigger a load
+
+=== Events
+
+==== That this plugin will fire
+
+ infinitescroll.beforesend: Fired just before the ajax request is given
+ infinitescroll.finish: Fired after a successful request has finished, and the data has been inserted into the DOM
+ infinitescroll.maxreached: Fired after the first empty response from the server. This will disable any further loading of data.
+
+==== That this plugin listens for
+
+ infinitescroll.scrollpage: This can be used to force a full-cycle load of data and append much like what happens just after the 'infinitescroll.beforesend' event is fired.
+    Note: The plugin is listening for this event to be fired on whatever DOM object you initially bound it to. This assumes one the examples above were used.
+    Example: $(window).trigger('infinitescroll.scrollpage', 1);
