@@ -8,12 +8,17 @@
                     triggerAt: 300,
                     page: 2,
                     appendTo: '.list tbody',
-                    container: $(document)
+                    container: $(document),
+                    callback: function () {},
                 }, options);
             var req = null;
             var maxReached = false;
 
             var infinityRunner = function() {
+            	if (settings.page == settings.maxPage) {
+            		settings.callback();
+            		return;
+            	}
                 if (settings.url !== null) {
                     if  (settings.force || (settings.triggerAt >= (settings.container.height() - el.height() - el.scrollTop()))) {
                         settings.force = false;
@@ -38,6 +43,7 @@
                         }, 'html');
                     }
                 }
+                settings.callback();
             };
             
             el.bind('infinitescroll.scrollpage', function(e, page) {
