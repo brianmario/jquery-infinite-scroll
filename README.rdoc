@@ -48,6 +48,9 @@ This is determined by handing back an empty response from the server. Once this 
  container:
     default: document
     This is the container used to measure scrolling, and then trigger a load
+ fade:
+    default: 'none'
+    Speed at which new data will smoothly fade in after appending. eg 'fast', 'slow', 250, 1000 (numbers in milliseconds). Set to 'none' or 0 to have results appear without a fade. 
 
 === Events
 
