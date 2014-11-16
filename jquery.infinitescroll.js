@@ -22,7 +22,7 @@
                             return;
                         }
                         $(settings.appendTo).trigger('infinitescroll.beforesend');
-                        req = $.get(settings.url, 'page='+settings.page, function(data) {
+                        req = $.get((typeof(settings.url) == 'function' ? settings['url']() : settings.url), 'page='+settings.page, function(data) {
                             if (data !== '') {
                                 if (settings.page > 1) {
                                     $(settings.appendTo).append(data);
